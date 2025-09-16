@@ -8,12 +8,12 @@ import time
 if __name__ == "__main__":
 
 
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.connect(('127.0.0.1', 8080)) 
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect(('127.0.0.1', 8080))
 
 
     # model = YOLO("best.pt")
-    #  model.export(format="ncnn")  # creates 'yolo11n_ncnn_model'
+    # model.export(format="ncnn")  # creates 'yolo11n_ncnn_model'
 
     # Load the converted ncnn model
     ncnn_model = YOLO("best_ncnn_model", task = "detect")
@@ -66,7 +66,11 @@ if __name__ == "__main__":
                 cv2.putText(frame, label, (x1, y1 - baseline), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
 
                 if class_id == 1:
-                    s.send(class_id )
+                    num = '1'
+                    try:
+                        s.send(num.encode())
+                    except Exception as e:
+                        print("Error sending data:", e)
 
         # cv2.imshow('YOLO detection results',frame) # Display image
 

@@ -6,18 +6,18 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <random> 
+#include <random>
 #include <array>
 
 constexpr int interObstacleDistance{400}; // Distance between obstacles is 200 px
 constexpr int maxScreenObstacles{3};
-const std::vector<std::string> obstacleTypes = {"1_Cactus.png", "3_Cactus.png", "Pterodactyl.png"};
+const std::vector<std::string> obstacleTypes = {"dino_game/resources/1_Cactus.png", "dino_game/resources/3_Cactus.png", "dino_game/resources/Pterodactyl.png"};
 
 class Obstacle
 {
 public:
     Obstacle(std::string _obstacleType);
-    
+
     void draw(void);
     void update();
 

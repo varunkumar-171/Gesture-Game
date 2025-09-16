@@ -4,7 +4,7 @@
 
 Obstacle::Obstacle(std::string _obsType)
     : type(_obsType)
-{   
+{
     position.x = screenWidth;
     position.y = 300 + 50 - 45;
     texture = LoadTexture(_obsType.c_str()); // TODO: Remove redundant texture loading

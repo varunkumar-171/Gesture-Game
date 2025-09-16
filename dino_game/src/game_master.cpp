@@ -9,7 +9,7 @@
 GameMaster::GameMaster()
     : gameOver(false), score(0), obstaclesOnScreen(0)
 {
-    collisionSound = LoadSound("mario-death.mp3");
+    collisionSound = LoadSound("dino_game/resources/mario-death.mp3");
     m_socket.clientSocket = -1;
     m_socket.serverSocket = -1;
 }
@@ -127,15 +127,19 @@ void GameMaster::initSockets(void)
     serverAddress.sin_port = htons(8080);
     serverAddress.sin_addr.s_addr = INADDR_ANY;
 
-    bind(m_socket.serverSocket, (struct sockaddr*)&serverAddress, sizeof(serverAddress));
+    if( bind(m_socket.serverSocket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0){
+        std::cout << "Bind Failed \n" ;
+    }
 
     listen(m_socket.serverSocket, 10);
 
     m_socket.clientSocket = accept(m_socket.serverSocket, nullptr, nullptr);
+
+    std::cout << "Socket has been initialised \n";
 }
 
 GameMaster::~GameMaster()
-{   
+{
     CloseAudioDevice();
     // destroy the window and cleanup the OpenGL context
 	CloseWindow();

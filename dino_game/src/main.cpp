@@ -9,14 +9,14 @@ by Jeffery Myers is marked with CC0 1.0. To view a copy of this license, visit h
 
 #include "raylib.h"
 
-#include "resource_dir.h"	// utility header for SearchAndSetResourceDir
+//#include "resource_dir.h"	// utility header for SearchAndSetResourceDir
 #include "game_master.hpp"
 
 int main ()
 {
 
 	// Utility function from resource_dir.h to find the resources folder and set it as the current working directory so we can load from it
-	SearchAndSetResourceDir("resources");
+	//SearchAndSetResourceDir("resources");
 
 	InitWindow(screenWidth, screenHeight, static_cast<std::string>(title).c_str());
 	InitAudioDevice();      // Initialize audio device

@@ -5,8 +5,8 @@ static Vector2 dinoInitPos{100, 300};
 
 Dino::Dino()
     : position{100, 300}, isGrounded(true), speed(200)
-{   
-    texture = LoadTexture("Dino.png");
+{
+    texture = LoadTexture("dino_game/resources/Dino.png");
 }
 
 Dino::~Dino()
@@ -32,7 +32,7 @@ void Dino::jump(int command)
     float frameTime = GetFrameTime();
 
     //if(IsKeyPressed(KEY_SPACE) && isGrounded) // Prevents double jump
-    if(command == 1 && isGrounded)
+    if((command == 1 || IsKeyPressed(KEY_SPACE) || GetTouchPointCount() == 1) && isGrounded)
     {
         PlaySound(jumpSound);
         speed = 550;
@@ -49,15 +49,12 @@ void Dino::jump(int command)
         isGrounded = true;
         position.y = dinoInitPos.y;
     }
-
-    
-
 }
 
 void Dino::loadParams(void)
 {
-    texture = LoadTexture("Dino.png");
-    jumpSound = LoadSound("mario-coin.mp3");
+    texture = LoadTexture("dino_game/resources/Dino.png");
+    jumpSound = LoadSound("dino_game/resources/mario-coin.mp3");
 }
 
 Vector2 Dino::getPosition()
