@@ -26,9 +26,9 @@ void GameMaster::initGame(void)
 
 void GameMaster::updateGame()
 {
+    int command = 0;
     if(!gameOver)
     {
-        int command = 0;
         recv(m_socket.clientSocket, &command, sizeof(command), 0);
         dino.update(command);
 
@@ -64,7 +64,7 @@ void GameMaster::updateGame()
         }
     }
     else{
-        if (IsKeyPressed(KEY_ENTER))
+        if (IsKeyPressed(KEY_ENTER) || command == 3) // Scissors detected
         {
             restartGame();
         }
@@ -74,7 +74,7 @@ void GameMaster::updateGame()
 void GameMaster::drawGame()
 {
     // drawing
-	BeginDrawing();
+    BeginDrawing();
     ClearBackground(RAYWHITE);
 
     if(!gameOver)
@@ -99,6 +99,8 @@ void GameMaster::drawGame()
 
 void GameMaster::gameLoop(void)
 {
+    int command = 0;
+    while(recv(m_socket.clientSocket, &command, sizeof(command), 0) != 1) // Rock to start
     while (!WindowShouldClose())
     {
         updateGame();

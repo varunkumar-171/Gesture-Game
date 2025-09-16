@@ -32,7 +32,7 @@ void Dino::jump(int command)
     float frameTime = GetFrameTime();
 
     //if(IsKeyPressed(KEY_SPACE) && isGrounded) // Prevents double jump
-    if((command == 1 || IsKeyPressed(KEY_SPACE) || GetTouchPointCount() == 1) && isGrounded)
+    if((command == 2 || IsKeyPressed(KEY_SPACE)) && isGrounded)
     {
         PlaySound(jumpSound);
         speed = 550;
